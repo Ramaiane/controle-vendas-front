@@ -1,0 +1,19 @@
+<div class="layout-breadcrumb">
+        <ul>
+            <li><a routerLink=""><em class="fas fa-home"></em></a></li>
+            <li>/</li>
+            <ng-template ngFor let-item let-last="last" [ngForOf]="items">
+                <li>
+                    <a [routerLink]="item.routerLink" *ngIf="item.routerLink">{{item.label}}</a>
+                    <ng-container *ngIf="!item.routerLink">{{item.label}}</ng-container>
+                </li>
+                <li *ngIf="!last">/</li>
+            </ng-template>
+        </ul>
+        
+        <div class="layout-breadcrumb-options">
+            <a routerLink="/" title="Logout">
+                <i class="fas fa-power-off"></i>
+            </a>
+        </div>
+    </div>

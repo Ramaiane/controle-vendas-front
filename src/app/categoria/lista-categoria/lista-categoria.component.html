@@ -1,0 +1,92 @@
+<div class="ui-g">
+    <div class="ui-g-12 ">
+        <div class="card card-w-title ui-g-12">
+        <h1>Categorias</h1>
+
+        <div class="ui-g-12">
+          <div class="ui-g-12 ui-lg-3 ">
+              <span class="md-inputfield ">     
+                  <input type="text" pInputText />
+                  <label>pesquisar categoria</label>
+                  <i class="fas fa-search"></i>
+              </span>
+          </div>
+          <div class="ui-g-12 ui-lg-9">
+              <button style="float: right;"  pButton type="button" icon="fas fa-plus" [routerLink]="['/mantemCategorias']"></button>
+          </div>
+         
+        </div> 
+
+        <div class="ui-g-12" > 
+          <p-table #dt [columns]="cols" [value]="responseCategoria ? responseCategoria.data.content : []" [paginator]="true"
+              [rows]="nrLinhasTabela" [lazy]="true" (onLazyLoad)="loadLazy($event)" [totalRecords]="responseCategoria ? responseCategoria.data.totalElements: 0"
+              sortField="descricao" sortMode="single" [tableStyle]="{'table-layout':'auto'}" [responsive]="true">
+              <ng-template pTemplate="caption">
+                  <div class="ui-helper-clearfix ">
+                      <p>Categorias cadastradas</p>
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+              <tr>
+                <th *ngFor="let col of cols" [pSortableColumn]="col.field !== 'ativo' ? col.field : null" title="{{col.header}}">
+                  {{col.header}}
+                  <p-sortIcon *ngIf="col.field !== 'ativo'" [field]="col.field" ariaLabel="Ative para ordenar" ariaLabelDesc="Ative para ordenar em ordem descendente"
+                    ariaLabelAsc="Ative para ordenar em ordem ascendente">
+                  </p-sortIcon>
+                </th>
+                <th title="Editar" style="width: 6%;">Editar</th>
+                <th title="Excluir" style="width: 7%;">Excluir</th>
+              </tr>
+              <tr>
+              
+                <th *ngFor="let col of cols" [ngSwitch]="col.field">
+                  <input class="ui-fluid" pInputText style="width: 100%;" *ngSwitchCase="'id'" placeholder="id" pInputText [(ngModel)]="filtroId"
+                    type="text" (input)="onChangeFilter()">
+                  <input class="ui-fluid" pInputText style="width: 100%;" *ngSwitchCase="'descricao'" placeholder="descricao" pInputText [(ngModel)]="filtroDescricao"
+                    type="text" (input)="onChangeFilter()">
+                               
+                </th>
+                <th></th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-categoria>
+              <tr>
+                <td>
+                  <span class="ui-column-title">Id</span>
+                  {{categoria.id}}
+                </td>
+                <td>
+                  <span class="ui-column-title">Loja</span>
+                  {{categoria.descricao}}
+                </td>        
+                <td>
+                  <span class="ui-column-title">Editar</span>
+                  <div style="text-align:center">
+                    <p-button  icon="fas fa-edit" class="table-button" title="editar"  
+                      routerLinkActive="active"  [routerLink]="['/editarCategorias', categoria.id]"></p-button>
+                  </div>
+
+                </td>
+                <td>
+                  <span class="ui-column-title">Excluir</span>
+                  <div style="text-align:center">
+                    <p-button icon="far fa-trash-alt" class="table-button" title="excluir"  (onClick)="excluir(categoria.id)"></p-button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="10" style="text-align: center;">
+                  Nenhuma categoria encontrada
+                </td>
+              </tr>
+            </ng-template>
+
+          </p-table> 
+        </div>
+        
+    </div>
+</div>
+</div>

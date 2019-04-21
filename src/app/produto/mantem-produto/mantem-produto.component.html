@@ -1,0 +1,120 @@
+<div class="ui-g">
+    <div class="ui-g-12 ">
+        <div class="card card-w-title ui-g-12">
+                <h1>Criar anúncio do Produto</h1>
+                <form class="ui-g form-group" (ngSubmit)="salvar()" #produtoForm="ngForm"> 
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-2">
+                            <label for="categoria">Categoria</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                                <p-dropdown [options]="optionsCategoria" [showClear]="true" id="categoria" [(ngModel)]="produto.categoria" name="categoriaSelecionada" [filter]="false" optionLabel="descricao" placeholder="Selecione uma categoria" [autoWidth]="false"></p-dropdown>
+                        </div>
+                        <div class="ui-g-12 ui-md-2" style="padding-left: 2em">
+                            <label for="fornecedor">Fornecedor</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <p-dropdown [options]="optionsFornecedor" [showClear]="true" id="fornecedor" [(ngModel)]="produto.fornecedor" name="fornecedor" [filter]="false" optionLabel="nome" placeholder="Selecione uma categoria" [autoWidth]="false"></p-dropdown>
+                        </div>
+                                        
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-2" >
+                            <label for="nome">Produto</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required id="nome" name="nome" class="ng-dirty ng-invalid" #nome="ngModel" id="nome" [(ngModel)]="produto.nome" />
+                                 <label>Nome do produto</label>
+                            </span>    
+                        </div> 
+                        <div class="ui-g-12 ui-md-2" style="padding-left: 2em">
+                            <label for="cor">Cor</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="cor"  name="cor" class="ng-dirty ng-invalid" #cor="ngModel" id="cor" [(ngModel)]="produto.cor" />
+                                <label>Cor:</label>
+                            </span>                             
+                         </div>
+                         
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-2" >
+                            <label for="medidas">Medidas</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="medidas"  name="medidas" class="ng-dirty ng-invalid" #medidas="ngModel" id="medidas" [(ngModel)]="produto.medidas" />
+                                <label>Dimensoes:</label>
+                            </span>                             
+                        </div>
+                        <div class="ui-g-12 ui-md-2" style="padding-left: 2em">
+                            <label for="modelo">Modelo</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  id="modelo" name="modelo" class="ng-dirty ng-invalid" #modelo="ngModel" id="modelo" [(ngModel)]="produto.modelo" />
+                                <label>Modelo:</label>
+                            </span>                             
+                         </div>
+                         
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-2">
+                            <label for="quantidade">Quantidade</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required  name="quantidade" class="ng-dirty ng-invalid" #quantidade="ngModel" id="quantidade" [(ngModel)]="produto.quantidade" />
+                                <label>Quantidade:</label>
+                            </span>                             
+                         </div>
+                         <div class="ui-g-12 ui-md-2">
+                                <label for="modelo" style="padding-left: 2em">Preço</label>
+                          </div>
+                         <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required  name="preco" class="ng-dirty ng-invalid" #preco="ngModel" id="preco" [(ngModel)]="produto.preco" />
+                                <label>Preço:</label>
+                            </span>                             
+                         </div>
+                    </div>
+
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-2">
+                            <label for="descricao">Descrição</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-4 ui-fluid">
+                            <span class="md-inputfield">
+                                <textarea pInputTextarea autoResize="autoResize" id="descricao" 
+                                    [rows]="5" [cols]="30" [(ngModel)]="produto.descricao" #descricao="ngModel" name="descricao"></textarea>
+                            </span>                             
+                         </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-6">
+                                <div class="ui-g-12 ui-md-4"><p-checkbox id="ativo" name="ativo" binary="true" label="ativo" [(ngModel)]="produto.ativo"></p-checkbox></div>               
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                            <h1>Foto</h1>
+                                <p-fileUpload  #uploader name="files" id="arquivo" (onUpload)="onUpload($event)" showUploadButton="false" accept="image/*"  
+                                url="{{uploadUrl}}" chooseLabel="Escolher Foto" maxFileSize="1000000"> 
+                                <ng-template pTemplate="content">
+                                    <div *ngFor="let file of files" class="ui-fileupload-files ng-star-inserted">
+                                            <li>{{file.name}} - {{file.size}} bytes</li>
+                                    </div>
+                                </ng-template>    
+                            </p-fileUpload>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-6">
+                               <button pButton type="submit" [disabled]="produtoForm.form.invalid" label="Salvar"></button>
+                        </div>
+                    </div>
+    
+                </form>
+        </div>
+    </div>
+</div>

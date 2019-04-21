@@ -1,0 +1,39 @@
+<div class="ui-g">
+    <div class="ui-g-12 ">
+        <div class="card card-w-title ui-g-12">
+                <h1>Cadastro de Fornecedor</h1>
+                <form class="ui-g form-group" (ngSubmit)="salvar()" #fornecedorForm="ngForm"> 
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required  name="nome" class="ng-dirty ng-invalid" #nome="ngModel" id="nome" [(ngModel)]="fornecedor.nome" />
+                                <label>Nome do Fornecedor</label>
+                            </span> 
+                           
+                            
+                         </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required  name="nome" class="ng-dirty ng-invalid" #nome="ngModel" id="nome" [(ngModel)]="fornecedor.url" />
+                                <label>Site</label>
+                            </span> 
+                           
+                            
+                         </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                                <div class="ui-g-12 ui-md-4"><p-checkbox name="ativo" binary="true" label="ativo" [(ngModel)]="fornecedor.ativo"></p-checkbox></div>               
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                               <button pButton type="submit" [disabled]="fornecedorForm.form.invalid" label="Salvar"></button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="ui-g">
+    <div class="ui-g-12 ">
+        <div class="card card-w-title ui-g-12">
+                <h1>Nova Loja</h1>
+                <form class="ui-g form-group" (ngSubmit)="salvar()" #lojaForm="ngForm"> 
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText  required  name="nome" class="ng-dirty ng-invalid" #nome="ngModel" id="nome" [(ngModel)]="loja.nome" />
+                                <label>Nome da loja</label>
+                            </span> 
+                           
+                            
+                         </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                                <div class="ui-g-12 ui-md-4"><p-checkbox name="ativo" binary="true" label="ativo" [(ngModel)]="loja.ativo"></p-checkbox></div>               
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-md-4">
+                               <button pButton type="submit" [disabled]="lojaForm.form.invalid" label="Salvar"></button>
+                        </div>
+                    </div>
+    
+                </form>
+        </div>
+    </div>
+</div>
